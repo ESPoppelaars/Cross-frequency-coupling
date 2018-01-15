@@ -62,7 +62,7 @@ for file = 1:nFiles
 
                 % Delta signal
                 
-                % Uncomment to simulate data without bias:
+                % Comment out to simulate data without bias:
                 % delta = cos(2*pi*fDelta * t);
                 
                 % Comment out to simulate data without bias:
@@ -90,7 +90,7 @@ for file = 1:nFiles
                 % With strong coupling
                 beta = (1 + deltaAmplitude + cos(2*pi*fDelta * t)/3)/3 .* cos(2*pi*fBeta * t);
 %                 
-%                 % Uncomment to simulate data without coupling:
+%                 % Comment out to simulate data without coupling:
 %                 beta = cos(2*pi*fBeta * t);
 %                 %Create amplitude variability (only without coupling).
 %                 betaAmplitude = 1 + sin(20*t*(rand+.5) + rand*2)/(2 + rand);
@@ -102,7 +102,7 @@ for file = 1:nFiles
                 % Noise amplitude
                 k = 6;
 
-                % difine the length of the vector
+                % define the length of the vector
                 % ensure that the M is even
                 if rem(N,2)
                     M = N+1;
@@ -121,7 +121,7 @@ for file = 1:nFiles
                 n = 1:NumUniquePts;
                 n = sqrt(n);
 
-                % multiplicate the left half of the spectrum so the power spectral density
+                % multiply the left half of the spectrum so the power spectral density
                 % is proportional to the frequency by factor 1/f, i.e. the
                 % amplitudes are proportional to 1/sqrt(f)
                 fourier(1:NumUniquePts) = fourier(1:NumUniquePts)./n;
