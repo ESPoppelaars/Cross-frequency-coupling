@@ -62,10 +62,6 @@ for file = 1:nFiles
 
                 % Delta signal
                 
-                % Comment out to simulate data without bias:
-                % delta = cos(2*pi*fDelta * t);
-                
-                % Comment out to simulate data without bias:
                 % Simulate data with bias:
                 delta = 0;
                 for c = 0:1/fDelta:tEnd
@@ -73,7 +69,12 @@ for file = 1:nFiles
                 end
                 
                 %Create amplitude variability.
-                deltaAmplitude = 1 + sin(5*t*(rand+.5) + rand*2)/(2 + rand);
+                %With a random frequency between 1 and 50 Hz:
+                %deltaAmplitude = 1 + sin((rand*49 + 1)*t * 2*pi + rand*2)/(2 + rand);
+                %Within the Delta range 1-4 Hz:
+                deltaAmplitude = 1 + sin((rand*3 + 1)*t * 2*pi + rand*2)/(2 + rand);
+                %Within the Beta range 14-30 Hz:
+                %deltaAmplitude = 1 + sin((rand*16 + 14)*t * 2*pi + rand*2)/(2 + rand);
                 
                 % Multiply the generated signal with the amplitude.
                 delta = delta.*deltaAmplitude;
@@ -89,18 +90,14 @@ for file = 1:nFiles
                 % Beta signal
                 % With strong coupling
                 beta = (1 + deltaAmplitude + cos(2*pi*fDelta * t)/3)/3 .* cos(2*pi*fBeta * t);
-%                 
-%                 % Comment out to simulate data without coupling:
-%                 beta = cos(2*pi*fBeta * t);
-%                 %Create amplitude variability (only without coupling).
-%                 betaAmplitude = 1 + sin(20*t*(rand+.5) + rand*2)/(2 + rand);
-%                 % Multiply the generated signal with the amplitude  (only without coupling).
-%                 beta = beta.*betaAmplitude;
 
                 %% Noise
 
                 % Noise amplitude
+                %Medium noise:
                 k = 6;
+                %Large noise:
+                %k = 20;
 
                 % define the length of the vector
                 % ensure that the M is even
@@ -158,3 +155,9 @@ for file = 1:nFiles
    dlmwrite(strcat('SimulatedData',num2str(file),'.csv'),signalMatrix,',',1,0)
 
 end
+
+%Plot the last epoch of the last 'participant'.
+plot(delta)
+hold on
+plot(beta)
+hold off
