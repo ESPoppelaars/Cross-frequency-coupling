@@ -5,4 +5,4 @@ The MatLab scripts in this folder accompany the paper entitled "Frontal delta-be
 The code runs simulations and analyses that are discussed in the paper.
 Using the code without following the paper may lead to confusion, incorrect data analyses, and misinterpretations of results. The authors assume no responsibility for inappropriate or incorrect use of this code.
 
-For correspondence: eefjes.poppelaars@sbg.ac.at
+For correspondence: es.poppelaars@gmail.com
